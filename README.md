@@ -30,7 +30,7 @@ Use POSTMAN to try the following endpoints:
 
 ### Response
 
-[
+    [
 
     {
         "animalID": 2,
@@ -94,7 +94,7 @@ Use POSTMAN to try the following endpoints:
         "habitat": "Savanna",
         "description": "Large, powerfully built cat. The second largest cat species."
     }
-]
+    ]
 
 
 ## Get a specific Animal by ID
@@ -107,16 +107,14 @@ Use POSTMAN to try the following endpoints:
 
 ###Response
 
-{
-
+    {
     "animalID": 8888,
     "name": "Asiatic Lion",
     "scientificName": "Panthera Leo",
     "species": "Lion",
     "habitat": "Savanna",
-    "description": "Large, powerfully built cat. The second largest cat species."
-    
-}
+    "description": "Large, powerfully built cat. The second largest cat species."   
+    }
 
 ## Add a new animal
 
@@ -163,16 +161,14 @@ Use POSTMAN to try the following endpoints:
 
 ### Response
 
-{
-
+    {
     "animalID": 8888,
     "name": "Asiatic Leo",
     "scientificName": "Panthera Leo",
     "species": "Lion",
     "habitat": "Savanna",
     "description": "Large, powerfully built cat. The second largest cat species."
-    
-}
+    }
 
 ## Delete an existing Animal
 
@@ -196,7 +192,7 @@ A list of all Animals minus the deleted Animal.
 
 ### Response
 
-[
+    [
 
     {
         "animalID": 4,
@@ -207,7 +203,7 @@ A list of all Animals minus the deleted Animal.
         "description": "a poison frog"
     }
     
-]
+    ]
 
 ## Get animals whose name contains a string
 
@@ -219,7 +215,7 @@ A list of all Animals minus the deleted Animal.
 
 ### Response
 
-[
+    [
 
     {
         "animalID": 3,
@@ -239,4 +235,4 @@ A list of all Animals minus the deleted Animal.
         "description": "a poison frog"
     }
     
-]
+    ]
