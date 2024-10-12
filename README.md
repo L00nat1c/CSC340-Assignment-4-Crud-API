@@ -122,8 +122,9 @@ Use POSTMAN to try the following endpoints:
 
   `POST /animals/new`
 
-  `http://localhost:8080/animals/new --data
-      {
+  `http://localhost:8080/animals/new` --data
+  
+    `{
           "name": "TestName",
           "scientificName": "TestScienceName",
           "species": "TestSpecies",
@@ -150,8 +151,9 @@ Use POSTMAN to try the following endpoints:
 
     `PUT /animals/update/{animalID}`
 
-    `http://localhost:8080/animals/update/8888 --data
-    {
+    `http://localhost:8080/animals/update/8888` --data
+    
+    `{
     "name": "Asiatic Leo",
     "scientificName": "Panthera Leo",
     "species": "Lion",
