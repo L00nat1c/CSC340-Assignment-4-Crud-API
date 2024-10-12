@@ -184,7 +184,7 @@ Use POSTMAN to try the following endpoints:
 
 ### Response
 
-A list of all Animals minus the delete Animal.
+A list of all Animals minus the deleted Animal.
 
 ## Get all animals of a given species
 
