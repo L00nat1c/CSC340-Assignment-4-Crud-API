@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/stylehome.css">
+    <title>Update Animal</title>
+</head>
+<body>
+
+<div class="topnav">
+    <a href="/animals/createForm">Create Animal</a>
+    <a href="/animals/2">Animal Details</a>
+    <a href="/animals/all">Animal List</a>
+    <a class="active" href="/animals/update/2">Update Animal</a>
+</div>
+<br>
+<br>
+
+<h1>Update Animal</h1>
+
+<div class="Section1">
+    <form action="/animals/update" method="post">
+        <label>Animal ID: </label>
+        <input type="number" id="animalID" name="animalID" data-th-value="${animal.animalID}" readonly/>
+        <br><br>
+
+        <label>Name: </label>
+        <input type="text" id="name" name="name" data-th-value="${animal.name}"/>
+        <br><br>
+
+        <label>Species: </label>
+        <input type="text" id="species" name="species" data-th-value="${animal.species}"/>
+        <br><br>
+
+        <label>Scientific Name: </label>
+        <input type="text" id="scientificName" name="scientificName" data-th-value="${animal.scientificName}"/>
+        <br><br>
+
+        <label>Habitat: </label>
+        <input type="text" id="habitat" name="habitat" data-th-value="${animal.habitat}"/>
+        <br><br>
+
+        <label>Description: </label>
+        <textarea name="description" id="description" cols="50" rows="10" data-th-value="${animal.description}"></textarea>
+        <br><br><br>
+
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+</body>
+</html>

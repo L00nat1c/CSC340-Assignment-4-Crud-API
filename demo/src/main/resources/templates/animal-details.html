@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/navbar.css">
+  <link rel="stylesheet" href="/stylehome.css">
+  <title>Animal Details</title>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/animals/createForm">Create Animal</a>
+  <a class="active" href="/animals/2">Animal Details</a>
+  <a href="/animals/all">Animal List</a>
+  <a href="/animals/update/2">Update Animal</a>
+</div>
+<br>
+<br>
+
+<h1>Animal Details</h1>
+
+<div class="Section1">
+  <table class="center" style="width:60%">
+    <tr>
+      <th>Animal ID</th>
+      <th>Name</th>
+      <th>Species</th>
+      <th>Scientific Name</th>
+      <th>Habitat</th>
+      <th>Description</th>
+      <th>Options</th>
+    </tr>
+    <tr>
+      <td data-th-text="${animal.animalID}"></td>
+      <td data-th-text="${animal.name}"></td>
+      <td data-th-text="${animal.species}"></td>
+      <td data-th-text="${animal.scientificName}"></td>
+      <td data-th-text="${animal.habitat}"></td>
+      <td data-th-text="${animal.description}"></td>
+      <td>
+        <a data-th-href="@{/animals/update/{id} (id=${animal.animalID})}">Edit</a>
+        <a data-th-href="@{/animals/delete/{id} (id=${animal.animalID})}">Delete</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/stylehome.css">
+    <title>Create Animal</title>
+</head>
+<body>
+
+<div class="topnav">
+    <a class="active" href="/animals/createForm">Create Animal</a>
+    <a href="/animals/2">Animal Details</a>
+    <a href="/animals/all">Animal List</a>
+    <a href="/animals/update/2">Update Animal</a>
+</div>
+<br>
+<br>
+
+<h1>Create Animal</h1>
+
+<div class="Section1">
+    <form action="/animals/new" method="post">
+        Name:<input type="text" id="name" name="name" placeholder="Animal Name">
+        <br><br>
+        Scientific Name: <input type="text" id="scientificName" name="scientificName" placeholder="Scientific Name">
+        <br><br>
+        Species:<input type="text" id="species" name="species" placeholder="Species">
+        <br><br>
+        Habitat:<input type="text" id="habitat" name="habitat" placeholder="Habitat">
+        <br><br>
+        Description:<textarea name="description" id="description" rows="10" cols="50" placeholder="Description"></textarea>
+        <br><br><br>
+        <button type="submit">Save</button>
+    </form>
+
+</div>
+
+</body>
+</html>

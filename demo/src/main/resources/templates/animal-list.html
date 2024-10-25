@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/stylehome.css">
+    <title>Animal List</title>
+</head>
+<body>
+
+<div class="topnav">
+    <a href="/animals/createForm">Create Animal</a>
+    <a href="/animals/2">Animal Details</a>
+    <a class="active" href="/animals/all">Animal List</a>
+    <a href="/animals/update/2">Update Animal</a>
+</div>
+
+<br>
+<br>
+
+<h1>Animal List</h1>
+
+<div class="Section1">
+    <table class="center" style="width:60%">
+        <tr>
+            <th>Animal ID</th>
+            <th>Name</th>
+            <th>Scientific Name</th>
+            <th>Species</th>
+            <th>Habitat</th>
+            <th>Options</th>
+        </tr>
+        <tr data-th-each="animal : ${animalList}">
+            <td data-th-text="${animal.animalID}"></td>
+            <td data-th-text="${animal.name}"></td>
+            <td data-th-text="${animal.scientificName}"></td>
+            <td data-th-text="${animal.species}"></td>
+            <td data-th-text="${animal.habitat}"></td>
+            <td>
+                <a data-th-href="@{/animals/{id} (id=${animal.animalID})}" >View Details</a>
+                <a data-th-href="@{/animals/species?species={species} (species=${animal.species})}">Same Species List</a>
+                <a data-th-href="@{/animals?habitat={habitat} (habitat=${animal.habitat})}">Same Habitat List</a>
+                <a data-th-href="@{/animals/update/{id} (id=${animal.animalID})}">Edit</a>
+                <a data-th-href="@{/animals/delete/{id} (id=${animal.animalID})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+<br>
+
+</body>
+</html>

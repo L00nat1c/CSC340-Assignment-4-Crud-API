@@ -2,11 +2,13 @@ package com.example.demo.animal;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/animals")
 public class AnimalController {
 
@@ -15,118 +17,118 @@ public class AnimalController {
 
     /**
      * Get a list of all Animals in the database
-     * http://localhost:8080/animals/all
      *
      * @return a list of all Animal object
      */
     @GetMapping("/all")
-    public List<Animal> getAllAnimals() {
-        return service.getAllAnimals();
+    public String getAllAnimals(Model model) {
+        model.addAttribute("animalList", service.getAllAnimals());
+        return "animal-list";
     }
 
     /**
      * Get a specific Animal by ID
-     * http://localhost:8080/animals/8888
      *
      * @param animalID is the unique ID for the Animal
-     * @return the Animal object with the correponding animalID
+     * @return the Animal object with the corresponding animalID
      */
     @GetMapping("/{animalID}")
-    public Animal getOneAnimal(@PathVariable int animalID) {
-        return service.getAnimalByID(animalID);
+    public String getOneAnimal(@PathVariable int animalID, Model model) {
+        model.addAttribute("animal", service.getAnimalByID(animalID));
+        return "animal-details";
     }
 
     /**
-     * Get a list of Animals that live in the specified habitat
-     * http://localhost:8080/animals?habitat=savanna
+     * Get a list of Animals that live in a specified habitat
      *
      * @param habitat is the animals' habitat
      * @return a list of Animals that live in the specified habitat
      */
     @GetMapping("")
-    public List<Animal> getAnimalByHabitat(@RequestParam(name = "habitat", defaultValue = "desert") String habitat){
-        return service.getAnimalByHabitat(habitat);
+    public String getAnimalByHabitat(@RequestParam(name = "habitat", defaultValue = "desert") String habitat, Model model){
+        model.addAttribute("animalList", service.getAnimalByHabitat(habitat));
+        return "animal-list";
     }
 
     /**
      * Get a list of Animals of a certain species
-     *http://localhost:8080/animals/species?species=Frog
      *
      * @param species is the species that the Animal is a part of
      * @return a list of Animals of a certain species
      */
     @GetMapping("/species")
-    public List<Animal> getAnimalsBySpecies(@RequestParam(name = "species", defaultValue = "Lion") String species) {
-        return service.getAnimalBySpecies(species);
+    public String getAnimalsBySpecies(@RequestParam(name = "species", defaultValue = "Lion") String species, Model model) {
+        model.addAttribute("animalList", service.getAnimalBySpecies(species));
+        return "animal-list";
     }
 
     /**
      * Get a list of Animals with a certain name
-     * http://localhost:8080/animals/name?name=blue
-     * http://localhost:8080/animals/name?name=l
      *
      * @param name is the name of the Animal
      * @return a list of Animals with a certain name
      */
     @GetMapping("/name")
-    public List<Animal> getAnimalsByName(@RequestParam(name = "name", defaultValue = "Blue") String name) {
-        return service.getAnimalByName(name);
+    public String getAnimalsByName(@RequestParam(name = "name", defaultValue = "Blue") String name, Model model) {
+        model.addAttribute("animalList", service.getAnimalByName(name));
+        return "animal-list";
+    }
+
+    /**
+     * Gets the create animal form
+     *
+     * @return the create animal form
+     */
+    @GetMapping("/createForm")
+    public String showCreateForm() {
+        return "animal-create";
     }
 
     /**
      * Creates a new Animal object
-     * http://localhost:8080/animals/new --data
-     * {
-     *     "name": "TestName",
-     *     "scientificName": "TestScienceName",
-     *     "species": "TestSpecies",
-     *     "habitat": "TestHabitat",
-     *     "description": "TestDescription"
-     * }
-     *
      *
      * @param animal is the new Animal object
      * @return a list of all Animals
      */
     @PostMapping("/new")
-    public List<Animal> addNewAnimal(@RequestBody Animal animal) {
+    public String addNewAnimal(Animal animal) {
         service.addNewAnimal(animal);
-        return service.getAllAnimals();
+        return "redirect:/animals/all";
+    }
+
+    /**
+     * Gets the update form for an animal
+     *
+     * @return the update form
+     */
+    @GetMapping("/update/{animalID}")
+    public String showUpdateForm(@PathVariable int animalID, Model model) {
+        model.addAttribute("animal", service.getAnimalByID(animalID));
+        return "animal-update";
     }
 
     /**
      * Updates an existing Animal object
-     * http://localhost:8080/animals/update/8888 --data
-     * {
-     *     "name": "Asiatic Lion",
-     *     "scientificName": "Panthera Leo",
-     *     "species": "Lion",
-     *     "habitat": "Savanna",
-     *     "description": "Large, powerfully built cat. The second largest cat species."
-     * }
      *
-     * @param animalID is the Animal's unique ID
      * @param animal is the Animal object
-     * @return the update Animal object
+     * @return the updated Animal object
      */
-    @PutMapping("/update/{animalID}")
-    public Animal updateAnimal(@PathVariable int animalID, @RequestBody Animal animal) {
-        service.updateAnimal(animalID, animal);
-        return service.getAnimalByID(animalID);
+    @PostMapping("/update")
+    public String updateAnimal(Animal animal) {
+        service.addNewAnimal(animal);
+        return "redirect:/animals/" + animal.getAnimalID();
     }
 
     /**
      * Deletes an Animal object
-     * http://localhost:8080/animals/delete/8888
      *
      * @param animalID is the Animal's unique ID
      * @return the updated list of Animals
      */
-    @DeleteMapping("/delete/{animalID}")
-    public List<Animal> deleteAnimalByID(@PathVariable int animalID){
+    @GetMapping("/delete/{animalID}")
+    public String deleteAnimalByID(@PathVariable int animalID){
         service.deleteAnimalByID(animalID);
-        return service.getAllAnimals();
+        return "redirect:/animals/all";
     }
-
 
 }
